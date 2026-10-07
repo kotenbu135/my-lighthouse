@@ -1,0 +1,25 @@
+name: Lighthouse CI
+on: push
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Audit URLs using Lighthouse
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            https://emperorstats.com/?internal=1
+            https://emperorstats.com/emperors/?internal=1
+            https://emperorstats.com/map/?internal=1
+            https://emperorstats.com/map/warring-states/?internal=1
+            https://emperorstats.com/ranking/?internal=1
+            https://emperorstats.com/ranking/longest-reign/?internal=1
+            https://emperorstats.com/emperors/qing-shengzu/?internal=1
+            https://emperorstats.com/emperors/dynasty/qing/?internal=1
+            https://emperorstats.com/kinship/?internal=1
+            https://emperorstats.com/database/?internal=1
+            https://emperorstats.com/emperors/names/?internal=1
+            https://emperorstats.com/emperors/eras/?internal=1
+          uploadArtifacts: true # save results as an action artifacts
+          temporaryPublicStorage: true # upload lighthouse report to the temporary storage
